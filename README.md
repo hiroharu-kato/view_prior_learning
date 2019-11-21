@@ -6,6 +6,9 @@ This is code for a paper [Learning View Priors for Single-view 3D Reconstruction
 
 For more details, please visit [project page](http://hiroharu-kato.com/projects_en/view_prior_learning.html).
 
+## Environment
+- This code is tested on Python 2.7.
+
 ## Citation
 
 ```
