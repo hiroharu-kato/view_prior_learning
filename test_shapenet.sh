@@ -1,6 +1,6 @@
 # Best model on ShapeNet
 # VPL, texture prediction, #views=20
-python ./mesh_reconstruction/test.py -eid shapenet_multi_color_nv20_uvr_cc -ds shapenet -nt 0
+python ./mesh_reconstruction/test.py -ds shapenet -nt 0 -eid shapenet_multi_color_nv20_uvr_cc_long
 
 # single: #views = 1
 # multi: 1 < #views
@@ -10,23 +10,24 @@ python ./mesh_reconstruction/test.py -eid shapenet_multi_color_nv20_uvr_cc -ds s
 # uvr: with VPL
 # cc: with class conditioning
 # long: more training iterations
-python ./mesh_reconstruction/test.py -eid shapenet_multi_color_nv20_uvr_cc -ds shapenet -nt 0
-python ./mesh_reconstruction/test.py -eid shapenet_multi_color_nv20 -ds shapenet -nt 0
-python ./mesh_reconstruction/test.py -eid shapenet_multi_color_nv2_uvr_cc -ds shapenet -nt 0
-python ./mesh_reconstruction/test.py -eid shapenet_multi_sil_nv20_uvr_cc_long -ds shapenet
-python ./mesh_reconstruction/test.py -eid shapenet_multi_sil_nv20_uvr_cc -ds shapenet
-python ./mesh_reconstruction/test.py -eid shapenet_multi_sil_nv10_uvr_cc -ds shapenet
-python ./mesh_reconstruction/test.py -eid shapenet_multi_sil_nv5_uvr_cc -ds shapenet
-python ./mesh_reconstruction/test.py -eid shapenet_multi_sil_nv3_uvr_cc -ds shapenet
-python ./mesh_reconstruction/test.py -eid shapenet_multi_sil_nv2_uvr_cc -ds shapenet
-python ./mesh_reconstruction/test.py -eid shapenet_multi_sil_nv20 -ds shapenet
-python ./mesh_reconstruction/test.py -eid shapenet_multi_sil_nv10 -ds shapenet
-python ./mesh_reconstruction/test.py -eid shapenet_multi_sil_nv5 -ds shapenet
-python ./mesh_reconstruction/test.py -eid shapenet_multi_sil_nv3 -ds shapenet
-python ./mesh_reconstruction/test.py -eid shapenet_multi_sil_nv2 -ds shapenet
-python ./mesh_reconstruction/test.py -eid shapenet_single_sil_nv1 -ds shapenet
-python ./mesh_reconstruction/test.py -eid shapenet_single_sil_nv1_uvr -ds shapenet
-python ./mesh_reconstruction/test.py -eid shapenet_single_sil_nv1_uvr_cc -ds shapenet
-python ./mesh_reconstruction/test.py -eid shapenet_single_color_nv1 -ds shapenet -nt 0
-python ./mesh_reconstruction/test.py -eid shapenet_single_color_nv1_uvr -ds shapenet -nt 0
-python ./mesh_reconstruction/test.py -eid shapenet_single_color_nv1_uvr_cc -ds shapenet -nt 0
+python ./mesh_reconstruction/test.py -ds shapenet -nt 0 -eid shapenet_multi_color_nv20_uvr_cc
+python ./mesh_reconstruction/test.py -ds shapenet -nt 0 -eid shapenet_multi_color_nv20
+python ./mesh_reconstruction/test.py -ds shapenet -nt 0 -eid shapenet_multi_color_nv2_uvr_cc
+python ./mesh_reconstruction/test.py -ds shapenet -nt 0 -eid shapenet_multi_color_nv2
+python ./mesh_reconstruction/test.py -ds shapenet -eid shapenet_multi_sil_nv20_uvr_cc_long
+python ./mesh_reconstruction/test.py -ds shapenet -eid shapenet_multi_sil_nv20_uvr_cc
+python ./mesh_reconstruction/test.py -ds shapenet -eid shapenet_multi_sil_nv10_uvr_cc
+python ./mesh_reconstruction/test.py -ds shapenet -eid shapenet_multi_sil_nv5_uvr_cc
+python ./mesh_reconstruction/test.py -ds shapenet -eid shapenet_multi_sil_nv3_uvr_cc
+python ./mesh_reconstruction/test.py -ds shapenet -eid shapenet_multi_sil_nv2_uvr_cc
+python ./mesh_reconstruction/test.py -ds shapenet -eid shapenet_multi_sil_nv20
+python ./mesh_reconstruction/test.py -ds shapenet -eid shapenet_multi_sil_nv10
+python ./mesh_reconstruction/test.py -ds shapenet -eid shapenet_multi_sil_nv5
+python ./mesh_reconstruction/test.py -ds shapenet -eid shapenet_multi_sil_nv3
+python ./mesh_reconstruction/test.py -ds shapenet -eid shapenet_multi_sil_nv2
+python ./mesh_reconstruction/test.py -ds shapenet -eid shapenet_single_sil_nv1
+python ./mesh_reconstruction/test.py -ds shapenet -eid shapenet_single_sil_nv1_uvr
+python ./mesh_reconstruction/test.py -ds shapenet -eid shapenet_single_sil_nv1_uvr_cc
+python ./mesh_reconstruction/test.py -ds shapenet -nt 0 -eid shapenet_single_color_nv1
+python ./mesh_reconstruction/test.py -ds shapenet -nt 0 -eid shapenet_single_color_nv1_uvr
+python ./mesh_reconstruction/test.py -ds shapenet -nt 0 -eid shapenet_single_color_nv1_uvr_cc
