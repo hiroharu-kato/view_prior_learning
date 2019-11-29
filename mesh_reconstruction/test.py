@@ -74,7 +74,7 @@ def run():
     if args.dataset == 'shapenet':
         dataset = dataset_shapenet.ShapeNet(args.dataset_directory, class_ids, 'test', device=args.gpu)
     else:
-        dataset = dataset_pascal.Pascal(args.dataset_directory, class_ids, 'test')
+        dataset = dataset_pascal.Pascal(args.dataset_directory, class_ids, 'val')
 
     # setup model & optimizer
     if args.dataset == 'shapenet':
