@@ -74,7 +74,7 @@ def run():
     if args.dataset == 'shapenet':
         dataset = dataset_shapenet.ShapeNet(args.dataset_directory, class_ids, 'test', device=args.gpu)
     else:
-        dataset = dataset_pascal.Pascal(args.dataset_directory, class_ids, 'test')
+        dataset = dataset_pascal.Pascal(args.dataset_directory, class_ids, 'val')
 
     # setup model & optimizer
     if args.dataset == 'shapenet':
@@ -108,14 +108,18 @@ def run():
             shape_decoder_type=args.shape_decoder_type,
             texture_decoder_type=args.texture_decoder_type,
             discriminator_type=args.discriminator_type,
+            silhouette_loss_type=None,
             vertex_scaling=args.vertex_scaling,
             texture_scaling=args.texture_scaling,
-            silhouette_loss_levels=args.silhouette_loss_levels,
-            lambda_silhouettes=args.lambda_silhouettes,
-            lambda_inflation=args.lambda_inflation,
-            lambda_discriminator=args.lambda_discriminator,
-            lambda_graph_laplacian=args.lambda_graph_laplacian,
+            silhouette_loss_levels=0,
+            lambda_silhouettes=0,
+            lambda_perceptual=0,
+            lambda_inflation=0,
+            lambda_graph_laplacian=0,
+            lambda_discriminator=0,
             no_texture=args.no_texture,
+            symmetric=args.symmetric,
+            class_conditional=None,
         )
     del model.discriminator
     chainer.serializers.load_npz(os.path.join(directory_output, 'model.npz'), model, strict=False)

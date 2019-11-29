@@ -45,7 +45,7 @@ class Pascal(object):
         self.voxels = {}
         self.num_data = {}
         for class_id in class_ids:
-            data = np.load(os.path.join(directory, '%s_%s.npz' % (class_id, set_name)))
+            data = np.load(os.path.join(directory, '%s_%s.npz' % (class_id, set_name)), allow_pickle=True)
             self.images_original[class_id] = data['images']
             self.images_ref[class_id] = data['images_ref']
             self.bounding_boxes[class_id] = data['bounding_boxes']
