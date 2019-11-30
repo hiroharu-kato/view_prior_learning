@@ -48,7 +48,33 @@ all 0.653372787125
 
 Other ShapeNet models are listed in `test_shapenet.sh`.
 
+Drawing animated gif of ShapeNet reconstruction requires the dataset provided by [Kar et al. NIPS 2017].
 
+```shell script
+cd data
+wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=17GjULuQZsn-s92PQFQSBzezDkonowIxR' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=17GjULuQZsn-s92PQFQSBzezDkonowIxR" -O lsm.tar.gz && rm -rf /tmp/cookies.txt
+tar xvzf lsm.tar.gz
+cd shapenet_release/renders/
+find ./ -name "*.tar.gz" -exec tar xvzf {} \;
+cd ../../../
+```
+
+Then, the following commands
+```shell script
+mkdir tmp
+bash make_gif.sh
+```
+
+output the following images.
+
+![](https://raw.githubusercontent.com/hiroharu-kato/view_prior_learning/master/data/examples/460cf3a75d8467d1bb579d1d8d989550_00.png)
+![](https://raw.githubusercontent.com/hiroharu-kato/view_prior_learning/master/data/examples/460cf3a75d8467d1bb579d1d8d989550_00_shapenet_multi_color_nv20_uvr_cc.gif)
+
+![](https://raw.githubusercontent.com/hiroharu-kato/view_prior_learning/master/data/examples/b4715a33fe6d1bb7f63ee8a34069b7c5_00.png)
+![](https://raw.githubusercontent.com/hiroharu-kato/view_prior_learning/master/data/examples/b4715a33fe6d1bb7f63ee8a34069b7c5_00_shapenet_multi_color_nv20_uvr_cc.gif)
+
+![](https://raw.githubusercontent.com/hiroharu-kato/view_prior_learning/master/data/examples/4231883e92a3c1a21c62d11641ffbd35_00.png)
+![](https://raw.githubusercontent.com/hiroharu-kato/view_prior_learning/master/data/examples/4231883e92a3c1a21c62d11641ffbd35_00_shapenet_multi_color_nv20_uvr_cc.gif)
 
 ## Citation
 
