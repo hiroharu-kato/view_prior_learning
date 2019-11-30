@@ -46,7 +46,7 @@ def run():
     parser = argparse.ArgumentParser()
     parser.add_argument('-eid', '--experiment_id', type=str, required=True)
     parser.add_argument('-md', '--model_directory', type=str, default='./data/models')
-    parser.add_argument('-dd', '--dataset_directory', type=str, default='./data/dataset')
+    parser.add_argument('-dd', '--dataset_directory', type=str, default='./data/shapenet_release/renders')
     parser.add_argument('-fr', '--frame_rate', type=int, default=10)
     parser.add_argument('-rs', '--random_seed', type=int, default=0)
     parser.add_argument('-g', '--gpu', type=int, default=0)
@@ -108,6 +108,7 @@ def run():
             discriminator_type=args.discriminator_type,
             vertex_scaling=args.vertex_scaling,
             texture_scaling=args.texture_scaling,
+            silhouette_loss_type=None,
             silhouette_loss_levels=0,
             lambda_silhouettes=0,
             lambda_textures=0,
@@ -162,7 +163,7 @@ def run():
         azimuth = -azimuth + 90
 
         image = scipy.misc.imread(filename_image)
-        scipy.misc.toimage(image, cmin=0, cmax=255).save('/tmp/%s_%02d.png' % (args.object_id, args.view_id))
+        scipy.misc.toimage(image, cmin=0, cmax=255).save('./tmp/%s_%02d.png' % (args.object_id, args.view_id))
         image = image.transpose((2, 0, 1))[None, :, :, :].astype('float32') / 255.
         image = dataset_shapenet.process_images(image)
         image = cp.array(image)
@@ -182,7 +183,7 @@ def run():
             jitter=0,
             flip=False,
         )
-        scipy.misc.toimage(image, cmin=0, cmax=1).save('/tmp/pascal_%s_%02d.png' % (args.class_id, args.image_number))
+        scipy.misc.toimage(image, cmin=0, cmax=1).save('./tmp/pascal_%s_%02d.png' % (args.class_id, args.image_number))
         azimuth = -np.degrees(np.arctan(rotation_matrix[0, 2] / rotation_matrix[0, 0]))
         if rotation_matrix[0, 0] < 0:
             azimuth += 180
@@ -243,15 +244,15 @@ def run():
             image_out = model.render(vertices, faces, viewpoint[None, :], vertices_t, faces_t, textures)
             image_out = image_out[0].data.get().transpose((1, 2, 0)).squeeze()
 
-        scipy.misc.toimage(image_out, cmin=0, cmax=1).save('/tmp/%s_%03d.png' % (prefix, i))
+        scipy.misc.toimage(image_out, cmin=0, cmax=1).save('./tmp/%s_%03d.png' % (prefix, i))
 
     # generate gif (need ImageMagick)
     options = '-delay %f -loop 0 -dispose 2' % (100 / args.frame_rate)
-    subprocess.call('convert %s /tmp/%s_*.png /tmp/%s.gif' % (options, prefix, prefix), shell=True)
+    subprocess.call('convert %s ./tmp/%s_*.png ./tmp/%s.gif' % (options, prefix, prefix), shell=True)
 
     # remove temporary files
-    # for filename in glob.glob('/tmp/%s_*.png' % prefix):
-    #     os.remove(filename)
+    for filename in glob.glob('./tmp/%s_*.png' % prefix):
+        os.remove(filename)
 
 
 if __name__ == '__main__':
