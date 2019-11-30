@@ -29,10 +29,6 @@ def run():
     parser.add_argument('-rs', '--random_seed', type=int, default=0)
     parser.add_argument('-g', '--gpu', type=int, default=0)
 
-    # components
-    parser.add_argument('-vs', '--vertex_scaling', type=float, default=0.01)
-    parser.add_argument('-ts', '--texture_scaling', type=float, default=1)
-
     # training
     parser.add_argument('-bs', '--batch_size', type=int, default=100)
     parser.add_argument('-nt', '--no_texture', type=int, default=1)
@@ -48,6 +44,8 @@ def run():
         parser.add_argument('-sdt', '--shape_decoder_type', type=str, default='conv')
         parser.add_argument('-tdt', '--texture_decoder_type', type=str, default='conv')
         parser.add_argument('-dt', '--discriminator_type', type=str, default='shapenet_patch')
+        parser.add_argument('-vs', '--vertex_scaling', type=float, default=0.01)
+        parser.add_argument('-ts', '--texture_scaling', type=float, default=1)
     elif 'pascal' in sys.argv:
         # dataset
         parser.add_argument('-ds', '--dataset', type=str, default='pascal')
@@ -56,9 +54,11 @@ def run():
 
         # components
         parser.add_argument('-et', '--encoder_type', type=str, default='resnet18pt')
-        parser.add_argument('-sdt', '--shape_decoder_type', type=str, default='basic_symmetric')
-        parser.add_argument('-tdt', '--texture_decoder_type', type=str, default='basic')
+        parser.add_argument('-sdt', '--shape_decoder_type', type=str, default='fc')
+        parser.add_argument('-tdt', '--texture_decoder_type', type=str, default='conv')
         parser.add_argument('-dt', '--discriminator_type', type=str, default='pascal_patch')
+        parser.add_argument('-vs', '--vertex_scaling', type=float, default=0.1)
+        parser.add_argument('-ts', '--texture_scaling', type=float, default=1)
 
     args = parser.parse_args()
     directory_output = os.path.join(args.model_directory, args.experiment_id)
@@ -108,14 +108,18 @@ def run():
             shape_decoder_type=args.shape_decoder_type,
             texture_decoder_type=args.texture_decoder_type,
             discriminator_type=args.discriminator_type,
+            silhouette_loss_type=None,
             vertex_scaling=args.vertex_scaling,
             texture_scaling=args.texture_scaling,
-            silhouette_loss_levels=args.silhouette_loss_levels,
-            lambda_silhouettes=args.lambda_silhouettes,
-            lambda_inflation=args.lambda_inflation,
-            lambda_discriminator=args.lambda_discriminator,
-            lambda_graph_laplacian=args.lambda_graph_laplacian,
+            silhouette_loss_levels=0,
+            lambda_silhouettes=0,
+            lambda_perceptual=0,
+            lambda_inflation=0,
+            lambda_graph_laplacian=0,
+            lambda_discriminator=0,
             no_texture=args.no_texture,
+            symmetric=args.symmetric,
+            class_conditional=None,
         )
     del model.discriminator
     chainer.serializers.load_npz(os.path.join(directory_output, 'model.npz'), model, strict=False)
