@@ -76,6 +76,24 @@ output the following images.
 ![](https://raw.githubusercontent.com/hiroharu-kato/view_prior_learning/master/data/examples/4231883e92a3c1a21c62d11641ffbd35_00.png)
 ![](https://raw.githubusercontent.com/hiroharu-kato/view_prior_learning/master/data/examples/4231883e92a3c1a21c62d11641ffbd35_00_shapenet_multi_color_nv20_uvr_cc.gif)
 
+## Training
+
+Training requires pre-trained AlexNet model.
+
+```shell script
+cd data
+mkdir caffemodel
+cd caffemodel
+wget http://dl.caffe.berkeleyvision.org/bvlc_alexnet.caffemodel
+cd ../../
+```
+
+Training of the provided pre-trained ShapeNet models is done by
+
+```shell script
+bash train_shapenet.sh
+```
+
 ## Citation
 
 ```

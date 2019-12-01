@@ -13,8 +13,7 @@ class AlexNetLoss(chainer.Chain):
         self.conv4 = cl.Convolution2D(None, 384, 3, pad=1)
         self.conv5 = cl.Convolution2D(None, 256, 3, pad=1)
 
-        # caffe_model = chainer.links.caffe.CaffeFunction('/media/disk2/lab/caffemodel/bvlc_alexnet.caffemodel')
-        caffe_model = chainer.links.caffe.CaffeFunction('/home/mil/kato/large_data/caffemodel/bvlc_alexnet.caffemodel')
+        caffe_model = chainer.links.caffe.CaffeFunction('./data/caffemodel/bvlc_alexnet.caffemodel')
         self.conv1.W.data = caffe_model.conv1.W.data.copy()
         self.conv1.b.data = caffe_model.conv1.b.data.copy()
         self.conv2.W.data = caffe_model.conv2.W.data.copy()

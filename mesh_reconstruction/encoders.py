@@ -143,7 +143,6 @@ def get_encoder(encoder_name, dim_in, dim_out):
     if encoder_name == 'resnet18':
         return ResNet18(dim_in, dim_out)
     elif encoder_name == 'resnet18pt':
-        return PreTrainedResNet18(dim_in, dim_out, '/data/unagi0/kato/large_data/caffemodel/resnet-18.caffemodel')
-        # return PreTrainedResNet18(dim_in, dim_out, '/media/disk2/lab/caffemodel/resnet-18.caffemodel')
+        return PreTrainedResNet18(dim_in, dim_out, './data/caffemodel/resnet-18.caffemodel')
     elif encoder_name == 'dummy':
         return DummyEncoder()
