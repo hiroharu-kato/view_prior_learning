@@ -88,10 +88,11 @@ wget http://dl.caffe.berkeleyvision.org/bvlc_alexnet.caffemodel
 cd ../../
 ```
 
-Training of the provided pre-trained ShapeNet models is done by
+Training of the provided pre-trained models is done by
 
 ```shell script
 bash train_shapenet.sh
+bash train_pascal.sh
 ```
 
 ## Citation
